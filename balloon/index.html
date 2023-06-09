@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baby World</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="balloon.css">
+</head>
+<body>
+  <script src="script.js"></script>
+  <div>
+    <div class="pump" id="pump">
+      <img class="handle" id="handle" src="assets/pump/Symbol 320001.png" alt="" onclick="inflateBalloon()">
+      <img class="nossle" id="nossle" src="assets/pump/Symbol 320002.png" alt="">
+      <img class="bod" id="bod" src="assets/pump/Symbol 320003.png" alt="">
+    </div>
+
+    <div id="balloon-container">
+      <img id="balloon" src="assets/balloons/1.png">
+    </div>
+  </div>
+  <script>
+    var balloon = document.getElementById('balloon');
+    var pump = document.getElementById('pump');
+    var handle = document.getElementById('handle');
+    var isDetached = false;
+
+    function inflateBalloon() {
+      if (!isDetached) {
+        var currentScale = parseFloat(balloon.style.transform.split('(')[1]) || 1.0;
+        currentScale += 0.5;
+        balloon.style.transform = 'scale(' + currentScale + ')';
+  
+        if (currentScale >= 2.0) {
+          detachBalloon();
+        }
+      }
+    }
+  
+    function detachBalloon() {
+      isDetached = true;
+      handle.style.display = 'none';
+      balloon.style.bottom = '20px';
+      balloon.style.right = '60px';
+      balloon.style.transformOrigin = 'bottom';
+      balloon.style.transition = 'transform 2s linear';
+  
+      setTimeout(function () {
+        moveBalloon();
+      }, 2000);
+    }
+  
+    function moveBalloon() {
+      var x = Math.random() * (window.innerWidth - balloon.offsetWidth);
+      var y = Math.random() * (window.innerHeight - balloon.offsetHeight);
+      
+      // Keep the balloon within the screen boundaries
+      x = Math.max(x, 0);
+      x = Math.min(x, window.innerWidth - balloon.offsetWidth);
+      y = Math.max(y, 0);
+      y = Math.min(y, window.innerHeight - balloon.offsetHeight);
+      
+      balloon.style.transform = 'scale(1) translate(' + x + 'px, ' + y + 'px)';
+    }
+  
+    function burstBalloon() {
+      balloon.style.display = 'none';
+    }
+  
+    balloon.addEventListener('click', burstBalloon);
+  </script>
+</body>
+</html>

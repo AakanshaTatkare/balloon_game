@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  
+  body{
+    background-image: url("assets/Symbol 3 copy.png" );
+    background-size:cover;
+    background-repeat: no-repeat;
+  }
+  
+  
+  #balloon-container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+  }
+  
+  #balloon {
+    position: absolute;
+    /* top: 0;
+    left: 0; */
+    bottom: 35vh;
+    right: 24.5vw;
+    width: 50px;
+    height: auto;
+    transform-origin: bottom;
+    transition: width 0.5s;
+  }  
+  
+  
+  #pump{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+  }
+  
+  .pump img {
+    width: 20vw;
+    height: 40vh;
+    transition: all 0.3s ease;
+  }
+  
+  #bod{
+    position:relative;
+    bottom: 0;
+    right: 0;
+  }
+  
+  #nossle{
+    position:absolute;
+    bottom:3.5vh;
+    right: 11.5vw;
+  }
+  
+  #handle{
+    position: absolute;
+    bottom: 25vh;
+    right: 0.5vw;
+  }
+  
+  .pump img:not(#nossle){
+    margin-left: 1vw;
+  }
+  
+  #handle:active ~ .bod{
+    width:calc(20vw + 1vw);  
+  }
+  
+  #handle:active{
+    bottom: calc(25vh - 15vh);
+  }
+  
